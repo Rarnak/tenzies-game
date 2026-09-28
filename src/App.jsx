@@ -1,5 +1,20 @@
+import Die from "./components/Die"
+
 export default function App(){
   return(
-    <h1>App Component</h1>
+    <main>
+      <div className="dice-container">
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+        <Die value="10"/>
+      </div>
+    </main>
   )
 }
