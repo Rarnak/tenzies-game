@@ -7,6 +7,13 @@ export default function App() {
 
   const [dice, setDice] = useState(generateAllNewDice())
 
+  const gameWon = dice.every(die => die.isHeld === true && die.value === dice[0].value)
+
+
+  // u dont have use effect everytime, especially if u can control it with react, use effect only for things beyond the control of react
+
+
+
   function generateAllNewDice() {
     // const randomNumbers = Array.from(Array(10), () => Math.floor((Math.random() * 6) + 1))
     // const numbers = [...Array(10)]
@@ -53,7 +60,8 @@ export default function App() {
       <button
         className="roll-button"
         onClick={rollDice}
-      >Roll</button>
+      >{gameWon ? "New Game" : "Roll"}
+      </button>
     </main>
   )
 }
