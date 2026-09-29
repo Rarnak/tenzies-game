@@ -13,8 +13,8 @@ export default function App() {
   const gameWon = dice.every(die => die.isHeld === true && die.value === dice[0].value)
 
   useEffect(() => {
-    if(gameWon){newGameRef.current.focus()}
-  },[gameWon])
+    if (gameWon) { newGameRef.current.focus() }
+  }, [gameWon])
 
   // u dont have use effect everytime, especially if u can control it with react, use effect only for things beyond the control of react
 
@@ -27,8 +27,7 @@ export default function App() {
       .map(() => {
         return {
           id: nanoid(),
-          // Math.floor((Math.random() * 6) + 1)
-          value: 5,
+          value: Math.floor((Math.random() * 6) + 1),
           isHeld: false
         }
       })
@@ -63,7 +62,7 @@ export default function App() {
     <main>
       {gameWon ? <ReactConfetti /> : undefined}
       <div aria-live="polite" className="sr-only">
-        {gameWon? <p>Congrats you won the game</p> : undefined}
+        {gameWon ? <p>Congrats you won the game</p> : undefined}
       </div>
       <Header />
       <div className="dice-container">
