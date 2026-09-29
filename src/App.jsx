@@ -1,4 +1,5 @@
 import Die from "./components/Die"
+import Header from "./components/Header"
 import { useState } from "react"
 import { nanoid } from "nanoid"
 
@@ -22,12 +23,16 @@ export default function App() {
   }
 
   function rollDice() {
-    setDice(generateAllNewDice())
+    setDice(prevDice => prevDice.map(die => (
+      die.isHeld ?
+        die :
+        { ...die, value: Math.floor((Math.random() * 6) + 1) }
+    )))
   }
 
   function hold(id) {
     setDice(prevDice => {
-      return prevDice.map(die => die.id === id ? {...die, isHeld: !die.isHeld} : die)
+      return prevDice.map(die => die.id === id ? { ...die, isHeld: !die.isHeld } : die)
     })
   }
 
@@ -41,6 +46,7 @@ export default function App() {
 
   return (
     <main>
+      <Header />
       <div className="dice-container">
         {diceElements}
       </div>
