@@ -92,3 +92,15 @@ button.roll-button {
 .dice-container .dice-button.held {
   background-color: #59E391;
 }
+
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0,0,0,0);
+  border: 0;
+}

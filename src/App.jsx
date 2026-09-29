@@ -1,6 +1,6 @@
 import Die from "./components/Die"
 import Header from "./components/Header"
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import { nanoid } from "nanoid"
 import ReactConfetti from "react-confetti"
 
@@ -8,7 +8,13 @@ export default function App() {
 
   const [dice, setDice] = useState(() => generateAllNewDice())
 
+  const newGameRef = useRef(null)
+
   const gameWon = dice.every(die => die.isHeld === true && die.value === dice[0].value)
+
+  useEffect(() => {
+    if(gameWon){newGameRef.current.focus()}
+  },[gameWon])
 
   // u dont have use effect everytime, especially if u can control it with react, use effect only for things beyond the control of react
 
@@ -21,7 +27,8 @@ export default function App() {
       .map(() => {
         return {
           id: nanoid(),
-          value: Math.floor((Math.random() * 6) + 1),
+          // Math.floor((Math.random() * 6) + 1)
+          value: 5,
           isHeld: false
         }
       })
@@ -55,11 +62,15 @@ export default function App() {
   return (
     <main>
       {gameWon ? <ReactConfetti /> : undefined}
+      <div aria-live="polite" className="sr-only">
+        {gameWon? <p>Congrats you won the game</p> : undefined}
+      </div>
       <Header />
       <div className="dice-container">
         {diceElements}
       </div>
       <button
+        ref={newGameRef}
         className="roll-button"
         onClick={rollDice}
       >{gameWon ? "New Game" : "Roll"}
