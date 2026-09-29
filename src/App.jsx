@@ -10,10 +10,7 @@ export default function App() {
 
   const gameWon = dice.every(die => die.isHeld === true && die.value === dice[0].value)
 
-
   // u dont have use effect everytime, especially if u can control it with react, use effect only for things beyond the control of react
-
-
 
   function generateAllNewDice() {
     // const randomNumbers = Array.from(Array(10), () => Math.floor((Math.random() * 6) + 1))
@@ -31,11 +28,14 @@ export default function App() {
   }
 
   function rollDice() {
-    setDice(prevDice => prevDice.map(die => (
-      die.isHeld ?
-        die :
-        { ...die, value: Math.floor((Math.random() * 6) + 1) }
-    )))
+
+    gameWon ?
+      setDice(generateAllNewDice()) :
+      setDice(prevDice => prevDice.map(die => (
+        die.isHeld ?
+          die :
+          { ...die, value: Math.floor((Math.random() * 6) + 1) }
+      )))
   }
 
   function hold(id) {
@@ -54,7 +54,7 @@ export default function App() {
 
   return (
     <main>
-      {gameWon?  <ReactConfetti /> : undefined}
+      {gameWon ? <ReactConfetti /> : undefined}
       <Header />
       <div className="dice-container">
         {diceElements}
