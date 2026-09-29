@@ -2,6 +2,7 @@ import Die from "./components/Die"
 import Header from "./components/Header"
 import { useState } from "react"
 import { nanoid } from "nanoid"
+import ReactConfetti from "react-confetti"
 
 export default function App() {
 
@@ -53,6 +54,7 @@ export default function App() {
 
   return (
     <main>
+      {gameWon?  <ReactConfetti /> : undefined}
       <Header />
       <div className="dice-container">
         {diceElements}
