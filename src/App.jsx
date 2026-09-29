@@ -6,7 +6,7 @@ import ReactConfetti from "react-confetti"
 
 export default function App() {
 
-  const [dice, setDice] = useState(generateAllNewDice())
+  const [dice, setDice] = useState(() => generateAllNewDice())
 
   const gameWon = dice.every(die => die.isHeld === true && die.value === dice[0].value)
 
