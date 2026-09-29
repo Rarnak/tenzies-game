@@ -10,8 +10,11 @@ export default function App() {
     // const numbers = [...Array(10)]
     // const randomNumbers = numbers.map(() => (Math.floor((Math.random() * 6) + 1 )))
     return new Array(10)
-      .fill(0)
-      .map(() => Math.floor((Math.random() * 6) + 1))
+      .fill({})
+      .map(() => {return {
+        value:Math.floor((Math.random() * 6) + 1),
+        isheld: false
+      }})
   }
 
   function rollDice(){
@@ -19,7 +22,7 @@ export default function App() {
   }
 
 
-  const diceElements = dice.map((number) => <Die value={number} />)
+  const diceElements = dice.map((die) => <Die value={die.value} />)
 
   return (
     <main>
