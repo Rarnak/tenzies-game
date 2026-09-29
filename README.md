@@ -20,5 +20,6 @@ If you are developing a production application, we recommend using TypeScript wi
 1. change to the repo directory in the terminal
 2. npm install
 3. npm i nanoid
-4. npm run dev
-5. ctrl + click on the localhost link
+4. npm i react-confetti
+5. npm run dev
+6. ctrl + click on the localhost link
